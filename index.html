@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gamehook is a desktop tool for exploring emulator memory and turning it into usable game data.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <title>Gamehook</title>
+  <style>
+    :root { --bg:#151617; --title:#202123; --surface:#1b1c1e; --raised:#232529; --field:#202630; --border:#3b3e43; --text:#e3e6eb; --muted:#9299a4; --blue:#3d82cf; --blue-dark:#294f7e; --blue-soft:#1d3047; --green:#47c975; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-width:320px; color:var(--text); background:var(--bg); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height:1.5; }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1120px, calc(100% - 40px)); margin:auto; }
+    .nav { height:76px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:11px; font-size:20px; font-weight:750; letter-spacing:-.035em; }
+    .mark { display:grid; place-items:center; width:31px; height:31px; }
+    .mark img { width:31px; height:31px; image-rendering:auto; }
+    .nav-links { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:14px; }
+    .nav-link { padding:9px 12px; border-radius:6px; transition:.16s ease; }
+    .nav-link:hover { color:var(--text); background:var(--raised); }
+    .hero { position:relative; overflow:hidden; padding:106px 0 82px; }
+    .hero-grid { position:relative; display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(360px, .8fr); gap:40px; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; color:#9fc4ed; background:var(--blue-soft); border:1px solid #294f7e; border-radius:999px; font-size:12px; font-weight:650; letter-spacing:.04em; text-transform:uppercase; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 10px var(--green); }
+    h1 { max-width:800px; margin:20px 0 18px; font-size:clamp(44px, 7vw, 78px); line-height:1.01; letter-spacing:-.065em; }
+    .lede { max-width:620px; margin:0; color:#b4bac3; font-size:clamp(17px, 2vw, 21px); line-height:1.55; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:31px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:48px; padding:0 18px; border:1px solid var(--border); border-radius:7px; background:var(--raised); font-weight:650; transition:transform .16s ease, background .16s ease, border-color .16s ease; }
+    .button:hover { transform:translateY(-2px); background:#2d3035; border-color:#5c626b; }
+    .button.primary { color:white; background:var(--blue); border-color:#69a5e7; box-shadow:0 8px 25px #19385d88; }
+    .button.primary:hover { background:#4b92dd; }
+    .button svg, .button .icon { width:18px; height:18px; }
+    .product-shot { margin:0; padding:1px; background:linear-gradient(135deg, #4c78aa, #31343a 45%, #31343a); border-radius:10px; box-shadow:0 26px 70px #00000070; }
+    .product-shot img { display:block; width:100%; height:auto; border-radius:9px; }
+    .feature-wrap { padding:90px 0; }
+    .section-title { max-width:610px; margin:0 0 37px; font-size:clamp(29px, 4vw, 45px); line-height:1.07; letter-spacing:-.045em; }
+    .features { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+    .feature { min-height:204px; padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+    .feature-icon { display:grid; place-items:center; width:37px; height:37px; margin-bottom:22px; color:#9fc4ed; background:var(--blue-soft); border:1px solid var(--blue-dark); border-radius:6px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:17px; }
+    .feature h3 { margin:0 0 8px; font-size:17px; } .feature p { margin:0; color:var(--muted); font-size:14px; }
+    footer { padding:26px 0 35px; color:var(--muted); font-size:13px; } .footer-inner { display:flex; justify-content:space-between; gap:20px; } footer a:hover { color:var(--text); }
+    @media (max-width:720px) { .shell { width:min(100% - 28px, 1120px); } .nav { height:64px; } .hero { padding:71px 0 55px; } .hero-grid, .features { grid-template-columns:1fr; } .hero-grid { gap:42px; } .product-shot { max-width:560px; } .feature-wrap { padding:63px 0; } .footer-inner { display:block; } }
+  </style>
+</head>
+<body>
+  <header class="shell"><nav class="nav" aria-label="Main navigation"><a class="brand" href="#top"><span class="mark" aria-hidden="true"><img src="icon.png" alt=""></span>Gamehook</a><div class="nav-links"><a class="nav-link" href="https://github.com/gamehook-io/gamehook" target="_blank" rel="noreferrer">GitHub ↗</a><a class="nav-link" href="https://discord.gg/rQbdcZF2AP" target="_blank" rel="noreferrer">Discord ↗</a></div></nav></header>
+  <main id="top">
+    <section class="hero shell"><div class="hero-grid"><div>
+      <h1>See what your game knows.</h1>
+      <p class="lede">Gamehook reads emulator memory and turns it into live, structured game data. Explore properties, inspect raw memory, and build on mapper definitions without losing your place.</p>
+      <div class="actions"><a class="button primary" href="https://github.com/gamehook-io/gamehook/releases/latest/download/Gamehook-win-Setup.exe" target="_blank" rel="noreferrer">↓ Download for Windows</a><a class="button primary" href="https://github.com/gamehook-io/gamehook/releases/latest/download/Gamehook.AppImage" target="_blank" rel="noreferrer">↓ Download for Linux</a><a class="button" href="https://discord.gg/rQbdcZF2AP" target="_blank" rel="noreferrer">Join our Discord ↗</a></div>
+    </div><figure class="product-shot"><img src="screenshot.png" alt="Gamehook application showing mapped game properties"></figure></div>
+    </section>
+    <section class="feature-wrap" id="features"><div class="shell"><h2 class="section-title">Built for seeing inside game state, not fighting your tools.</h2><div class="features"><article class="feature"><div class="feature-icon">{ }</div><h3>Mapped properties</h3><p>Translate emulator memory into meaningful, inspectable data through XML mapper definitions.</p></article><article class="feature"><div class="feature-icon">⌕</div><h3>Inspect anything</h3><p>Move from property explorer to raw memory viewer when you need to understand what is really there.</p></article><article class="feature"><div class="feature-icon">⌁</div><h3>Keep signal close</h3><p>Pin important values, use inline calculations, and keep your live game data visible while you work.</p></article></div></div></section>
+  </main>
+  <footer class="shell"><div class="footer-inner"><span><a href="https://github.com/gamehook-io/gamehook" target="_blank" rel="noreferrer">github.com/gamehook-io/gamehook ↗</a></span></div></footer>
+</body>
+</html>
